@@ -16,16 +16,16 @@ const Navbar = () => {
   return (
     <nav className='nav-wrapper'>
       <div className='container'>
-        <Link to='/' className='logo'>
+        <Link to='/shopping-cart/' className='logo'>
           Shopping
         </Link>
 
         <ul className='right'>
           <li>
-            <Link to='/'>Home</Link>
+            <Link to='/shopping-cart/'>Home</Link>
           </li>
           <li>
-            <Link to='/cart'>
+            <Link to='/shopping-cart/cart'>
               <MdShoppingCart/>(
               {cartTotalQuantity})
             </Link>
