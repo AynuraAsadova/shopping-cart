@@ -28,7 +28,6 @@ const Home = () => {
                     <b>Price: {item.price}$</b>
                   </p>
                   <button
-                    to='/'
                     onClick={() => handleAddItem(item)}
                     className='btn btn-warning w-100 mt-3'
                   >

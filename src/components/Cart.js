@@ -7,7 +7,7 @@ import {
   getTotal,
 } from "../reducer/cartSlice";
 import { Link } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 
 const Cart = () => {
@@ -15,8 +15,8 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTotal())
-  },[cart, dispatch])
+    dispatch(getTotal());
+  }, [cart, dispatch]);
 
   return (
     <div className='container cart'>
@@ -24,11 +24,13 @@ const Cart = () => {
       {cart.cartItems.length === 0 ? (
         <div className='empty-cart text-center'>
           <div>Your cart is empty</div>
-          <Link to='/shopping-cart/'><BsArrowLeft/> Start shopping</Link>
+          <Link to='/shopping-cart/'>
+            <BsArrowLeft /> Start shopping
+          </Link>
         </div>
       ) : (
         <>
-          <div className='titles'>
+          <div className='titles d-none d-md-grid'>
             <h4 className='product-title'>Product</h4>
             <h4 className='price'>Price</h4>
             <h4 className='quantity'>Quantity</h4>
@@ -48,18 +50,27 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className='cart-product-price'>
-                  <div>{cartItem.price}$</div>
+                  <div>
+                    <h4 className='price d-inline-block d-md-none me-2'>Price:</h4>
+                    {cartItem.price}$
+                  </div>
                 </div>
-                <div className='cart-product-quantity'>
-                  <button onClick={() => dispatch(decreaseItem(cartItem))}>
-                    -
-                  </button>
-                  <div className='count'>{cartItem.cartQuantity}</div>
-                  <button onClick={() => dispatch(addItem(cartItem))}>
-                    +
-                  </button>
+                <div className='d-flex align-items-center'>
+                  <h4 className='quantity d-inline-block d-md-none me-3'>
+                    Quantity:
+                  </h4>
+                  <div className='cart-product-quantity'>
+                    <button onClick={() => dispatch(decreaseItem(cartItem))}>
+                      -
+                    </button>
+                    <div className='count'>{cartItem.cartQuantity}</div>
+                    <button onClick={() => dispatch(addItem(cartItem))}>
+                      +
+                    </button>
+                  </div>
                 </div>
                 <div className='cart-product-total-price'>
+                  <h4 className='total d-inline-block d-md-none me-2'>Total: </h4>
                   {cartItem.price * cartItem.cartQuantity}$
                 </div>
               </div>
@@ -78,7 +89,9 @@ const Cart = () => {
                 <span className='amount'>{cart.cartTotalAmount}$</span>
               </div>
               <div>
-                <Link to='/shopping-cart/' className='d-block'><BsArrowLeft/> Continue shopping</Link>
+                <Link to='/shopping-cart/' className='d-block'>
+                  <BsArrowLeft /> Continue shopping
+                </Link>
               </div>
             </div>
           </div>

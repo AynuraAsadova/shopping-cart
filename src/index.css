@@ -175,6 +175,7 @@ nav a svg{
 
 .cart .cart-summary{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     padding-top: 2rem;
@@ -191,6 +192,8 @@ nav a svg{
     background: none;
     outline: none;
     cursor: pointer;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .cart .cart-checkout{
@@ -230,4 +233,14 @@ nav a svg{
 .cart .empty-cart a:hover {
     color: white;
     background: black;
+}
+
+@media only screen and (max-width: 768px) {
+    .cart .cart-product-total-price{
+        justify-self: left;
+    }
+
+    .cart .cart-item, .cart .titles{
+        grid-template-columns: 1fr;
+    }
 }
