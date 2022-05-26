@@ -24,7 +24,7 @@ const Cart = () => {
       {cart.cartItems.length === 0 ? (
         <div className='empty-cart text-center'>
           <div>Your cart is empty</div>
-          <Link to='/'><BsArrowLeft/> Start shopping</Link>
+          <Link to='/shopping-cart/'><BsArrowLeft/> Start shopping</Link>
         </div>
       ) : (
         <>
@@ -78,7 +78,7 @@ const Cart = () => {
                 <span className='amount'>{cart.cartTotalAmount}$</span>
               </div>
               <div>
-                <Link to='/' className='d-block'><BsArrowLeft/> Continue shopping</Link>
+                <Link to='/shopping-cart/' className='d-block'><BsArrowLeft/> Continue shopping</Link>
               </div>
             </div>
           </div>
