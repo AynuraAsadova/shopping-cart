@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import Item1 from '../images/item1.jpg'
 import Item2 from '../images/item2.jpg'
 import Item3 from '../images/item3.jpg'
@@ -26,26 +27,44 @@ export const productsSlice = createSlice({
       const itemIndex = state.cartItems.findIndex((item) => item.id === action.payload.id);
       if(itemIndex >=0) {
         state.cartItems[itemIndex].cartQuantity += 1;
+        toast.info(`increase ${state.cartItems[itemIndex].title} cart quantity`, {
+          position: 'bottom-left'
+        })
       } else{
         state.cartItems.push({ ...action.payload, cartQuantity: 1})
+        toast.success(`added ${action.payload.title} to cart`, {
+          position: 'bottom-left'
+        })
       }
       
     },
     removeItem: (state,action) => {
       const deleteItem = state.cartItems.filter(item => item.id !== action.payload.id)
       state.cartItems = deleteItem;
+      toast.error(`delete ${action.payload.title} from cart`, {
+        position: 'bottom-left'
+      })
     },
     decreaseItem: (state, action) => {
       const itemIndex = state.cartItems.findIndex((item) => item.id === action.payload.id);
       if(state.cartItems[itemIndex].cartQuantity >1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
+        toast.warn(`decrease ${action.payload.title} cart quantity`, {
+          position: 'bottom-left'
+        })
       } else if(state.cartItems[itemIndex].cartQuantity === 1){
         const removeItem = state.cartItems.filter(item => item.id !== action.payload.id)
         state.cartItems = removeItem;
+        toast.error(`delete ${action.payload.title} from cart`, {
+          position: 'bottom-left'
+        })
       }
     },
     clearCart: (state) => {
       state.cartItems = []
+      toast.error(`delete all products from cart`, {
+        position: 'bottom-left'
+      })
     },
     getTotal: (state) => {
       const {total, quantity} = state.cartItems.reduce(
